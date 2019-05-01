@@ -17,10 +17,6 @@
  */
 package com.axelor.apps.fleet.web;
 
-import java.util.List;
-
-import com.axelor.apps.fleet.db.AdharCard;
-import com.axelor.apps.fleet.db.Course;
 import com.axelor.apps.fleet.db.Hobbies;
 import com.axelor.apps.fleet.db.MobileNo;
 import com.axelor.apps.fleet.db.Student;
@@ -31,12 +27,13 @@ import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import java.util.List;
 
 @Singleton
 public class VehicleController {
 
   @Inject private VehicleService vehicleService;
-  
+
   @Inject private StudentRepository studentRepository;
 
   public void setVehicleName(ActionRequest request, ActionResponse response) {
@@ -44,26 +41,29 @@ public class VehicleController {
     String actualName = vehicleService.setVehicleName(vehicle);
     response.setValue("name", actualName);
   }
-  
-  
+
   public void fetchAllStudentData(ActionRequest request, ActionResponse response) {
-	 
-	  List<Student> listStd=studentRepository.all().fetch();
-	  
-	  for (Student student : listStd) {
-			 
-		  System.err.println("Name : "+student.getName());
-		 
-		  for(MobileNo mobileNo:student.getMobileNoList()) {
-			  System.err.println("SimCard : "+mobileNo.getSimcard().getName()+" Mobile No : "+mobileNo.getMobileNo());
-		  }
-		  
-		  System.out.println("Adhar Card No : "+student.getAdharcardNo().getAdharNumber());
-		    
-		  for(Hobbies hobbies:student.getHobbiesSet()) {
-			  System.err.println("Hobbies : "+hobbies.getName());
-		  }	  
-		  System.out.println("Course : "+student.getCourseName().getCourseName());		
-	}  
+
+    List<Student> listStd = studentRepository.all().fetch();
+
+    for (Student student : listStd) {
+
+      System.err.println("Name : " + student.getName());
+
+      for (MobileNo mobileNo : student.getMobileNoList()) {
+        System.err.println(
+            "SimCard : "
+                + mobileNo.getSimcard().getName()
+                + " Mobile No : "
+                + mobileNo.getMobileNo());
+      }
+
+      System.out.println("Adhar Card No : " + student.getAdharcardNo().getAdharNumber());
+
+      for (Hobbies hobbies : student.getHobbiesSet()) {
+        System.err.println("Hobbies : " + hobbies.getName());
+      }
+      System.out.println("Course : " + student.getCourseName().getCourseName());
+    }
   }
 }

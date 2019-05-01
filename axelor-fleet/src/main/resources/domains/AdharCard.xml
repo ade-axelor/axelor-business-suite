@@ -4,7 +4,8 @@
 		<module name="fleet" package="com.axelor.apps.fleet.db"/>
 
 	<entity name="AdharCard" lang="java" cachable="true">
-		<string name="adharNumber" namecolumn="true"  title="Adhar Card No"/>	
+		<string name="adharNumber" namecolumn="true"  title="Adhar Card No"/>
+		<one-to-one name="student" ref="Student"/>
 	</entity>
 	
 </domain-models>
