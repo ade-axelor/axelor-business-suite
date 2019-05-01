@@ -6,6 +6,51 @@
 	<menuitem name="fleet-root" title="Fleet" order="-83" if="__config__.app.isApp('fleet')"
 		icon="fa-car" icon-background="orange"/>
 	
+	<menuitem title="Sim Card-m" name="fleet-simcard" action="fleet-simcard" parent="fleet-root"/>
+	
+	<action-view name="fleet-simcard" title="Sim Card-A" model="com.axelor.apps.fleet.db.SimCard">
+		<view type="grid" name="simcard-grid"/>
+		<view type="form" name="simcard-form"/>
+	</action-view>
+	
+	
+	<menuitem title="Mobile No-m" name="fleet-MobileNo" action="fleet-MobileNo" parent="fleet-root"/>
+	
+	<action-view name="fleet-MobileNo" title="Mobile No-a" model="com.axelor.apps.fleet.db.MobileNo">
+		<view type="grid" name="MobileNo-grid"/>
+		<view type="form" name="MobileNo-form"/>
+	</action-view>
+	
+	<menuitem title="Adhar Card" name="fleet-AdharCard" action="fleet-AdharCard" parent="fleet-root"/>
+	
+	<action-view name="fleet-AdharCard" title="Adhar Card" model="com.axelor.apps.fleet.db.AdharCard">
+		<view type="grid" name="AdharCard-grid"/>
+		<view type="form" name="AdharCard-form"/>
+	</action-view>
+	
+	<menuitem title="Hobbies" name="fleet-Hobbies" action="fleet-Hobbies" parent="fleet-root"/>
+	
+	<action-view name="fleet-Hobbies" title="Hobbies" model="com.axelor.apps.fleet.db.Hobbies">
+		<view type="grid" name="Hobbies-grid"/>
+		<view type="form" name="Hobbies-form"/>
+	</action-view>
+	
+	<menuitem title="Course" name="fleet-Course" action="fleet-Course" parent="fleet-root"/>
+	
+	<action-view name="fleet-Course" title="Course" model="com.axelor.apps.fleet.db.Course">
+		<view type="grid" name="Course-grid"/>
+		<view type="form" name="Course-form"/>
+	</action-view>
+		
+	<menuitem title="Student" name="fleet-Student" action="fleet-Student" parent="fleet-root"/>
+	
+	<action-view name="fleet-Student" title="Student" model="com.axelor.apps.fleet.db.Student">
+		<view type="grid" name="Student-grid"/>
+		<view type="form" name="Student-form"/>
+	</action-view>
+	
+	
+	
 	<menuitem name="fleet-root-vehicle" title="Vehicle" action="fleet.root.vehicle" parent="fleet-root" />
 	
 	<action-view name="fleet.root.vehicle" title="Vehicle" model="com.axelor.apps.fleet.db.Vehicle">

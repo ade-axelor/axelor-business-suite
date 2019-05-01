@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.0.xsd">
+		<module name="fleet" package="com.axelor.apps.fleet.db"/>
+
+	<entity name="Student" lang="java" cachable="true">
+		<string name="name" title="Student Name"/>
+		<one-to-many name="mobileNoList" ref="MobileNo" mappedBy="student" title="Mobile No"/>
+		<one-to-one ref="AdharCard" name="adharcardNo" title="Adhar Card No"/> 
+		<many-to-many name="hobbiesSet" ref="Hobbies" title="Hobbies Tags"/>
+		<many-to-one name="courseName" ref="Course" title="Course Name"/>
+	</entity>
+	
+</domain-models>

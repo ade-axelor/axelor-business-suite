@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+	<grid name="Student-grid" title="Student" model="com.axelor.apps.fleet.db.Student">
+	<menubar>
+		<menu title="Student Data">
+			<item action="action-student-fetch-all-data" title="All Data"/>
+		</menu>
+	</menubar>
+		<field name="name" />
+		<field name="courseName"/>
+		<field name="adharcardNo"/>
+	</grid>
+	<action-method name="action-student-fetch-all-data">
+		<call class="com.axelor.apps.fleet.web.VehicleController" method="fetchAllStudentData"/>
+	</action-method>
+	<form name="Student-form" title="Sim Card" model="com.axelor.apps.fleet.db.Student" width="large">
+	
+		<panel name="mainPanel">
+			<field name="name" />
+			<field name="courseName"/>
+			<field name="adharcardNo"/>
+		</panel>
+		  <panel-tabs name="mainPanelTab">
+    			<panel-related name="mobileNoListPanel" title="Mobile No List" colSpan="12" field="mobileNoList">
+     				 <field name="simcard"/>
+					 <field name="mobileNo"/>
+    			</panel-related>  
+    			<panel-related name="hobbiesSetPanel" title="Hobbies Set" colSpan="12" field="hobbiesSet">
+     				 <field name="name"/>
+    			</panel-related>  
+  		  </panel-tabs>
+	</form>
+</object-views>
