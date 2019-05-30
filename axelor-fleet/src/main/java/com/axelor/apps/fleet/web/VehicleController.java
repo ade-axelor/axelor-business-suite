@@ -58,7 +58,11 @@ public class VehicleController {
                 + mobileNo.getMobileNo());
       }
 
-      System.out.println("Adhar Card No : " + student.getAdharcardNo().getAdharNumber());
+      try {
+        System.out.println("Adhar Card No : " + student.getAdharcardNo().getAdharNumber());
+      } catch (Exception e) {
+        System.out.println(e.getMessage() + "value occures");
+      }
 
       for (Hobbies hobbies : student.getHobbiesSet()) {
         System.err.println("Hobbies : " + hobbies.getName());

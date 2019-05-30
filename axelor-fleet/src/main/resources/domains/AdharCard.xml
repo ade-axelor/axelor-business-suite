@@ -5,7 +5,7 @@
 
 	<entity name="AdharCard" lang="java" cachable="true">
 		<string name="adharNumber" namecolumn="true"  title="Adhar Card No"/>
-		<one-to-one name="student" ref="Student"/>
+		<one-to-one name="student" ref="Student" mappedBy="adharcardNo"/>
 	</entity>
 	
 </domain-models>

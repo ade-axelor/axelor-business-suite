@@ -15,7 +15,7 @@
 	<action-method name="action-student-fetch-all-data">
 		<call class="com.axelor.apps.fleet.web.VehicleController" method="fetchAllStudentData"/>
 	</action-method>
-	<form name="Student-form" title="Sim Card" model="com.axelor.apps.fleet.db.Student" width="large">
+	<form name="Student-form" title="Student" model="com.axelor.apps.fleet.db.Student" width="large">
 	
 		<panel name="mainPanel">
 			<field name="name" />
