@@ -73,57 +73,46 @@ public class AccountChartController {
 
     } else response.setFlash(I18n.get(IExceptionMessage.ACCOUNT_CHART_3));
   }
-  
+
   public void Test(ActionRequest request, ActionResponse response) throws AxelorException {
 
-	    AccountConfig accountConfig = request.getContext().asType(AccountConfig.class);
-	    AccountChart act = accountChartRepo.find(accountConfig.getAccountChart().getId());
-	    Company company1 = companyRepo.find(accountConfig.getCompany().getId());
-	    
-	    Company company=companyRepo.find(1l);
-	    
-	 // one to one  ( second side decide what will be return )
-	    
-	    
-	    AccountConfig accountConfigObject=company.getAccountConfig(); 
-	    
-	 // BiDirectional : One to One 
-	    
-	    Company bi_company=accountConfigObject.getCompany();
-	    
-	    Currency currencyObject=company.getCurrency();// many to one  Uni - directional
-	    
-	    
-	    
-	    /* one to many bidirectional   */ 
-	    
-	    List<CompanyDepartment> cdList=company.getCompanyDepartmentList();
-	    for (CompanyDepartment companyDepartment : cdList) {
-			
-	    	//one to many 
-	    	
-	    	Company companyObject=companyDepartment.getCompany();
-	    	
-		}
-	    company.getTradingNameSet();
-	    
-	    //many to many  ( bi-directional)
-	    
-	    Set<TradingName> tradingNameSet=company.getTradingNameSet();
-	    for (TradingName tradingName : tradingNameSet) {
-			
-	    	Set<Company> companySet=tradingName.getCompanySet();
-	    	
-		}
-	    
-	    // many to many ( uni-directional )
-	    Set<BankDetails> bankDetailsSet=company.getBankDetailsSet();
-	    for (BankDetails bankDetails : bankDetailsSet) {
-			
-	    
-	    	
-		}
-	    
-	  }
-  
+    AccountConfig accountConfig = request.getContext().asType(AccountConfig.class);
+    AccountChart act = accountChartRepo.find(accountConfig.getAccountChart().getId());
+    Company company1 = companyRepo.find(accountConfig.getCompany().getId());
+
+    Company company = companyRepo.find(1l);
+
+    // one to one  ( second side decide what will be return )
+
+    AccountConfig accountConfigObject = company.getAccountConfig();
+
+    // BiDirectional : One to One
+
+    Company bi_company = accountConfigObject.getCompany();
+
+    Currency currencyObject = company.getCurrency(); // many to one  Uni - directional
+
+    /* one to many bidirectional   */
+
+    List<CompanyDepartment> cdList = company.getCompanyDepartmentList();
+    for (CompanyDepartment companyDepartment : cdList) {
+
+      // one to many
+
+      Company companyObject = companyDepartment.getCompany();
+    }
+    company.getTradingNameSet();
+
+    // many to many  ( bi-directional)
+
+    Set<TradingName> tradingNameSet = company.getTradingNameSet();
+    for (TradingName tradingName : tradingNameSet) {
+
+      Set<Company> companySet = tradingName.getCompanySet();
+    }
+
+    // many to many ( uni-directional )
+    Set<BankDetails> bankDetailsSet = company.getBankDetailsSet();
+    for (BankDetails bankDetails : bankDetailsSet) {}
+  }
 }

@@ -192,12 +192,11 @@ public interface IExceptionMessage {
 
   static final String STOCK_MOVE_VERIFY_PRODUCT_STOCK_ERROR = /*$$(*/
       "Product stock for %s is not enough for availability request" /*)*/;
-  
+
   /** Stock correction service and controller */
   public static final String STOCK_CORRECTION_1 = /*$$(*/
       "Incorrect product for stock correction" /*)*/;
 
   public static final String STOCK_CORRECTION_2 = /*$$(*/
       "No stock move generated.Please verify stock correction details." /*)*/;
-      
 }

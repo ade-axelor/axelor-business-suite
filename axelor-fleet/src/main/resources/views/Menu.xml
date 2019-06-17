@@ -6,6 +6,18 @@
 	<menuitem name="fleet-root" title="Fleet" order="-83" if="__config__.app.isApp('fleet')"
 		icon="fa-car" icon-background="orange"/>
 	
+	
+	<menuitem title="Calculator" name="fleet-calculator" action="calculation-operations" parent="fleet-root"/>
+	
+	<action-view name="calculation-operations" title="Calculator" model="com.axelor.apps.fleet.db.Calculator">
+	
+		<view type="form" name="Calculator-form"/>
+		<view type="grid" name="Calculator-grid"/>
+		
+	</action-view>
+	
+	
+	
 	<menuitem title="Sim Card-m" name="fleet-simcard" action="fleet-simcard" parent="fleet-root"/>
 	
 	<action-view name="fleet-simcard" title="Sim Card-A" model="com.axelor.apps.fleet.db.SimCard">

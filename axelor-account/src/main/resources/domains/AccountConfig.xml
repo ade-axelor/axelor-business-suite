@@ -152,6 +152,8 @@
 		<many-to-one name="invoiceMessageTemplate" title="Message template" ref="com.axelor.apps.message.db.Template"/>
 
 		<finder-method name="findByCompany" using="company"/>
+		
+		 
 
 		<extra-code><![CDATA[
 	

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+	<grid name="Calculator-grid" title="Calculator Entries" model="com.axelor.apps.fleet.db.Calculator">
+			<field name="firstValue" />
+			<field name="secondValue"/>
+			<field name="result"/>
+	</grid>
+	
+	<form name="Calculator-form" title="Calculator Entry" model="com.axelor.apps.fleet.db.Calculator" 
+	onNew="set-defaultvalue-for-textbox"  onSave="readonly-on-record-save"  width="large">
+		<panel name="mainPanel">
+			<field name="firstValue" onChange="validate-check-positive-number"/>
+			<field name="secondValue" onChange="validate-check-positive-number"/>
+			<field name="result"/>
+			<button name="add-button" onClick="action-group-calculate-addition" title="Add"/>
+		</panel>
+	</form>
+	
+	<!--
+		All Action call on particular event
+		
+	 Default Values for form field -->
+	
+	<action-record name="set-defaultvalue-for-textbox" model="com.axelor.apps.fleet.db.Calculator">
+  		<field name="firstValue" expr="1"/>
+  		<field name="secondValue" expr="1"/>
+	</action-record>
+	
+	<!-- Check positive values in fields   and display error below or above a field-->
+	
+	<action-condition name="check-value-positive">
+  			<check field="firstValue"  if="firstValue &lt; 0" error="value must be positive"/>
+  			<check field="secondValue" if="secondValue  &lt; 0" error="value must be positive"/>
+    </action-condition>
+    
+    <!-- check positive number if error then pop up will show and after  confirm then again call action if given ( set default value for field ) -->
+ 
+ 	<action-validate name="validate-check-positive-number">
+  			<error if="firstValue &lt; 0" message="Enter Positive Number" action="set-defaultvalue-for-textbox"/>
+  			<error if="secondValue &lt; 0" message="Enter Positive Number" action="set-defaultvalue-for-textbox"/>
+	</action-validate>
+	
+	<!--  Call a controller method  -->
+	
+	<action-method name="calculator-addition">
+		<call class="com.axelor.apps.fleet.web.CalculatorController" method="addValue"/>
+	</action-method>
+
+	<!--  Group of Actions call together with given sequence -->
+	<action-group name="action-group-calculate-addition">
+			<action name="calculator-addition"/>
+			<action name="save"/>
+	</action-group>
+	
+	
+	<!--  Field will be readonly if firstvalue is less than 100 it happen when you click on save button -->
+	
+	<action-attrs name="readonly-on-record-save">
+  		<attribute for="firstValue,secondValue,result" name="readonly" expr="firstValue &lt; 100" /> 	 
+	</action-attrs>
+    
+   <!-- 
+   			action condition work flow : error will display above a field.
+   
+   			<action-condition name="check-value-positive">
+  				<check field="firstValue"  if="firstValue &lt; 0" error="value must be positive"/>
+  				<check field="secondValue" if="secondValue  &lt; 0" error="value must be positive"/>
+            </action-condition>
+   		
+   			
+   			<form name="Calculator-form" title="Calculator Entry" model="com.axelor.apps.fleet.db.Calculator" 
+	        onNew="set-defaultvalue-for-textbox" width="large">
+				<panel name="mainPanel">
+					<field name="firstValue" onChange="check-value-positive"/> :- here action - validation will call
+					<field name="secondValue" onChange="check-value-positive"/> :- here action - validation will call
+					<field name="result"/>
+					<button name="add-button" onClick="" title="Add"/>
+				</panel>
+			</form>
+   
+   
+    -->
+    
+    
+
+	
+</object-views>
