@@ -152,6 +152,18 @@
         <view type="form" name="language-form"/>
     </action-view>
 
+
+	<menuitem name="admin-root-general-workers"
+        parent="admin-root-general" title="Workers"
+        action="admin-root-general-workers"/>
+
+    <action-view name="admin-root-general-workers"
+        title="Workers" model="com.axelor.apps.base.db.Workers" >
+        <view type="grid" name="workers-grid"/>
+        <view type="form" name="workers-form"/>
+    </action-view>
+	
+	
 	<menuitem name="referential-root" title="Referential" order="15" parent="admin-root" if="__config__.app.isApp('base')"/>
 		
 	<menuitem name="referential-root-partners" parent="referential-root"
