@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+    
+    <grid name="email-grid-email" title="Emails" model="com.axelor.apps.base.db.Email">
+        <field name="emailAddress"/>    
+        <field name="emailCompany"/>
+        
+       
+    </grid>
+    
+    <form name="email-form-email" title="Email" model="com.axelor.apps.base.db.Email" >
+    	<panel name="mainPanel" title="Email Details : ">
+	        <field name="emailAddress"/>    
+       		 <field name="emailCompany"/>
+        </panel>
+    </form>
+    
+  
+</object-views>

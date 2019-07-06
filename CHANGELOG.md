@@ -134,6 +134,8 @@
 - LEAVE REQUEST : Set duration value 0 if day planning of selected weekly planning is empty
 - ACCOUNT MOVE REVERSE: Selected reverse move date must not be after the date of the day
 - ACCOUNT MOVE REVERSE: add the possibility to choose to hide or not the move lines (origin and reverse) in bank reconciliation  
+- Change google-plus icon by google one.
+- SUPPLY CHAIN : delete boolean manageInvoicedAmountByLine.
 
 ## Bug Fixes
 - TeamTask : Resolve NPE on save of new team task.
@@ -161,5 +163,6 @@
 - ACCOUNT MOVE REVERSE: add translation
 - SALEORDER : fix action with obsolete name
 - ABC ANALSYS : Fixed logo, sequence number and page number alignment in birt report.
+- Transactionnal : correction and standardisation of rollback.
 
 [Unreleased 5.2.0]: https://github.com/axelor/axelor-business-suite/compare/dev...wip

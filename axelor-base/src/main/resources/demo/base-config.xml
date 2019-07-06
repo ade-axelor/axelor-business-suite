@@ -4,11 +4,14 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/data-import http://axelor.com/xml/ns/data-import/data-import_5.0.xsd">
   
 <!--     IMPORT DU PACKAGE 'AUTH' -->
+	
 
     <input file="auth_permission.csv" separator=";" type="com.axelor.auth.db.Permission" search="self.name = :name"/>
     
     <input file="auth_role.csv" separator=";" type="com.axelor.auth.db.Role"  search="self.name = :name">
         <bind column="permissions" to="permissions" search="self.name in :permissions" eval="permissions.split('\\|') as List"/>
+        
+        <!--  column : csv file column ,  to : domain field name , search  :  self.name = permission domain   -->
     </input>
     
     <input file="auth_group.csv" separator=";" type="com.axelor.auth.db.Group" search="self.code = :code">
@@ -31,7 +34,7 @@
 
 	<input file="base_language.csv" separator=";" type="com.axelor.apps.base.db.Language" search="self.importId = :importId"/>
 	
-	<input file="base_workers.csv" separator="," type="com.axelor.apps.base.db.Workers" search="self.importId = :importId"/>
+	
 
 	<input file="base_sequence.csv" separator=";" type="com.axelor.apps.base.db.Sequence" search="self.importId = :importId" call="com.axelor.csv.script.SequenceScript:computeFullname">
     	<bind to="yearlyResetOk" column="yearlyResetOk" eval="yearlyResetOk == '1' ? true : false"/>
@@ -229,6 +232,42 @@
 
     <input file="meta_metaTranslation.csv" separator=";" type="com.axelor.meta.db.MetaTranslation"
       search="self.key = :key AND self.language = :language"/>
+     <!-- 
+      <input file="auth_role.csv" separator=";" type="com.axelor.auth.db.Role"  search="self.name = :name">
+        <bind column="permissions" to="permissions" search="self.name in :permissions" eval="permissions.split('\\|') as List"/>
+        
+          column : csv file column ,  to : domain field name , search  :  self.name = permission domain   
+    </input>-->
+    
+    <!--  Normal Fields with Relational Fields Like : Many to one and Many to Many  -->
+    
+      <input file="base_hobbies.csv" type="com.axelor.apps.base.db.Hobbies" separator=";" search="self.code = :code"/>
+      
+      <input file="base_workers.csv" separator="," type="com.axelor.apps.base.db.Workers">
+      	 
+      	 <!-- default value -->
+      	 
+      	 <!-- <bind to="dataLoadDate" eval="new org.joda.time.LocalDate()"/> --> 
+      	  
+      	  <!--  Groovy inline scripting -->
+      	  
+      	  <bind column="googleUser" to="isGoogleUser" eval="googleUser ==~ /^(T|Y|1)$/ ? 'true' : 'false'"/>
+      	 
+      	  <bind column="hobbies" to="hobbiesSet" search="self.code in :hobbies" eval="hobbies.split('\\|') as List"/>	
+      	  
+      	  <bind to="emailsSet">
+      	  	<bind  column="ea1"  to="emailAddress"/>
+      	  	<bind column="ec1"   to="emailCompany"/>
+      	  </bind>
+      	  
+      	  <bind to="emailsSet">
+      	  	<bind  column="ea2"  to="emailAddress"/>
+      	  	<bind column="ec2"   to="emailCompany"/>
+      	  </bind>
+      	 
+      </input>
+      
+      <input file="base_workers_update.csv" separator="," type="com.axelor.apps.base.db.Workers" search="self.name = :name" update="true" />
 
 </csv-inputs>
 

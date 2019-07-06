@@ -9,6 +9,12 @@
   
     <string name="name" title="Name"  />
     <string name="city" title="City"/>
+  	<many-to-one name="country" ref="Country" title="Country"/>
+  	<many-to-many name="hobbiesSet" ref="Hobbies" title="Hobbies"/>
+  	<one-to-many name="emailsSet" ref="Email"/>
+  	<many-to-one name="currency" ref="Currency" title="Currency"/>
+  	<date name="dataLoadDate" title="Last Time Data Load"/>
+  	<boolean name="isGoogleUser" title="Google User"/>
     
   </entity>
   

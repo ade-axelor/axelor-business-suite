@@ -162,6 +162,30 @@
         <view type="grid" name="workers-grid"/>
         <view type="form" name="workers-form"/>
     </action-view>
+    
+    
+    <menuitem name="admin-root-general-email"
+        parent="admin-root-general" title="Emails"
+        action="admin-root-general-email"/>
+
+    <action-view name="admin-root-general-email"
+        title="Email" model="com.axelor.apps.base.db.Email" >
+        <view type="grid" name="email-grid-email"/>
+        <view type="form" name="email-form-email"/>
+    </action-view>
+    
+    
+    <menuitem name="admin-root-general-hobbies"
+        parent="admin-root-general" title="Hobbies"
+        action="admin-root-general-hobbies"/>
+
+    <action-view name="admin-root-general-hobbies"
+        title="Hobbies" model="com.axelor.apps.base.db.Hobbies" >
+        <view type="grid" name="hobbies-grid"/>
+        <view type="form" name="hobbies-form"/>
+    </action-view>
+    
+    
 	
 	
 	<menuitem name="referential-root" title="Referential" order="15" parent="admin-root" if="__config__.app.isApp('base')"/>
