@@ -9,12 +9,15 @@
   
     <string name="name" title="Name"  />
     <string name="city" title="City"/>
-  	<many-to-one name="country" ref="Country" title="Country"/>
-  	<many-to-many name="hobbiesSet" ref="Hobbies" title="Hobbies"/>
+    <integer name="age" title="Age"/>
+  	<many-to-one name="country" ref="Country" title="Country ( M to O )"/>
+  	<many-to-many name="hobbiesSet" ref="Hobbies" title="Hobbies (  M to M )"/>
   	<one-to-many name="emailsSet" ref="Email"/>
-  	<many-to-one name="currency" ref="Currency" title="Currency"/>
-  	<date name="dataLoadDate" title="Last Time Data Load"/>
-  	<boolean name="isGoogleUser" title="Google User"/>
+  	<many-to-one name="currency" ref="Currency" title="Currency ( M to O )"/>
+  	<date name="dataLoadDate" title="Last Time Data Load (Set Default value using Eval )"/>
+  	<boolean name="isGoogleUser" title="Google User ( Groovy Eval Inline Script )"/>
+  	<datetime name="collegeStartDate" title="College Start Date ( Adapter )"/>
+  	<datetime name="collegeEndDate" title="College End Date ( Adapter )"/>
     
   </entity>
   

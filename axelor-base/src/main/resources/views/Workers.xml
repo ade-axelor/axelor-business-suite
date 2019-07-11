@@ -2,35 +2,45 @@
 <object-views xmlns="http://axelor.com/xml/ns/object-views"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
-    
-    <grid name="workers-grid" title="Workers" model="com.axelor.apps.base.db.Workers">
-        <field name="name"/>    
-        <field name="city"/>
-        <field name="country"/>
-        <field name="currency"/>
-        <field name="dataLoadDate"/>
-        <field name="isGoogleUser"/>
-       
-    </grid>
-    
-    <form name="workers-form" title="Workers" model="com.axelor.apps.base.db.Workers" onNew="action-record-workers-values">
-    	<panel name="mainPanel">
-	        <field name="name"/>
-	        <field name="city"/>
-	        <field name="country" form-view="country-form" grid-view="country-grid"/>
-	        <field name="hobbiesSet" widget="TagSelect" canNew="false"/>
-	         <field name="currency" />
-	         <field name="dataLoadDate"/>
-	         <field name="isGoogleUser"/>
-        </panel>
-        <panel name="emails" title="Emails Details" >
-        	<panel-related field="emailsSet" title="Email List" colSpan="12"/>
-        </panel>
-    </form>
-    
-    <action-record name="action-record-workers-values" model="com.axelor.apps.base.db.Workers" search="self.name = 'abhinav'" copy="true" >
-    <field name="name" expr="abhinav"/>
-    <field name="city" expr="surat"/>
-    </action-record>
-    
+
+	<grid name="workers-grid" title="Workers" model="com.axelor.apps.base.db.Workers">
+		<field name="name" />
+		<field name="city" />
+		<field name="age"/>
+		<field name="country" />
+		<field name="currency" />
+		<field name="dataLoadDate" />
+		<field name="isGoogleUser" widget="boolean-select" x-true-text="Yes" x-false-text="No"/>
+		<field name="collegeStartDate" />
+		<field name="collegeEndDate" />
+		
+
+	</grid>
+
+	<form name="workers-form" title="Workers" model="com.axelor.apps.base.db.Workers"
+		onNew="action-record-workers-values">
+		<panel name="mainPanel">
+			<field name="name" />
+			<field name="city" />
+			<field name="age"/>
+			<field name="country" form-view="country-form" grid-view="country-grid" />
+			<field name="hobbiesSet" widget="TagSelect" canNew="false" />
+			<field name="currency" />
+			<field name="dataLoadDate" />
+			<field name="isGoogleUser" widget="boolean-select" x-true-text="Yes" x-false-text="No"/>
+			<field name="collegeStartDate" />
+			<field name="collegeEndDate" />
+		</panel>
+		<panel name="emails" title="Emails Details">
+			<panel-related field="emailsSet" title="Email List"
+				colSpan="12" />
+		</panel>
+	</form>
+
+	<action-record name="action-record-workers-values" model="com.axelor.apps.base.db.Workers"
+		search="self.name = 'abhinav'" copy="true">
+		<field name="name" expr="abhinav" />
+		<field name="city" expr="surat" />
+	</action-record>
+
 </object-views>

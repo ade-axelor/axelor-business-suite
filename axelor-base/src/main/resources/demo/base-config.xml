@@ -4,7 +4,10 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/data-import http://axelor.com/xml/ns/data-import/data-import_5.0.xsd">
   
 <!--     IMPORT DU PACKAGE 'AUTH' -->
-	
+	<adapter name="LocalDateTime" type="com.axelor.data.adapter.JavaTimeAdapter">
+    	<option name="type" value="LocalDateTime"/>
+  	  	<option name="format" value="dd/MM/yy HH:mm"/>
+ 	 </adapter>
 
     <input file="auth_permission.csv" separator=";" type="com.axelor.auth.db.Permission" search="self.name = :name"/>
     
@@ -240,20 +243,24 @@
     </input>-->
     
     <!--  Normal Fields with Relational Fields Like : Many to one and Many to Many  -->
-    
+   
       <input file="base_hobbies.csv" type="com.axelor.apps.base.db.Hobbies" separator=";" search="self.code = :code"/>
       
       <input file="base_workers.csv" separator="," type="com.axelor.apps.base.db.Workers">
       	 
       	 <!-- default value -->
       	 
-      	 <!-- <bind to="dataLoadDate" eval="new org.joda.time.LocalDate()"/> --> 
+      	 <bind to="dataLoadDate" eval="java.time.LocalDate.now()"/> 
       	  
       	  <!--  Groovy inline scripting -->
       	  
       	  <bind column="googleUser" to="isGoogleUser" eval="googleUser ==~ /^(T|Y|1)$/ ? 'true' : 'false'"/>
+      	  
+      	 <!-- Many to Many  -->
       	 
       	  <bind column="hobbies" to="hobbiesSet" search="self.code in :hobbies" eval="hobbies.split('\\|') as List"/>	
+      	  
+      	  <!-- One to Many  -->
       	  
       	  <bind to="emailsSet">
       	  	<bind  column="ea1"  to="emailAddress"/>
@@ -264,6 +271,11 @@
       	  	<bind  column="ea2"  to="emailAddress"/>
       	  	<bind column="ec2"   to="emailCompany"/>
       	  </bind>
+      	 
+      	 <!-- Adapter : Convert String to Local Date Time  -->
+      	 
+      	 <bind to="collegeStartDate" column="collegeStartDate" adapter="LocalDateTime"/>
+      	 <bind to="collegeEndDate" column="collegeEndDate" adapter="LocalDateTime"/>
       	 
       </input>
       
