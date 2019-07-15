@@ -246,7 +246,7 @@
    
       <input file="base_hobbies.csv" type="com.axelor.apps.base.db.Hobbies" separator=";" search="self.code = :code"/>
       
-      <input file="base_workers.csv" separator="," type="com.axelor.apps.base.db.Workers">
+      <input file="base_workers.csv" separator="," type="com.axelor.apps.base.db.Workers" call="com.axelor.csv.script.StudentNameUpdate:changeStudentName" prepare-context="">
       	 
       	 <!-- default value -->
       	 
@@ -279,7 +279,7 @@
       	 
       </input>
       
-      <input file="base_workers_update.csv" separator="," type="com.axelor.apps.base.db.Workers" search="self.name = :name" update="true" />
+     <!--  <input file="base_workers_update.csv" separator="," type="com.axelor.apps.base.db.Workers" search="self.name = :name" update="true" /> -->
 
 </csv-inputs>
 
