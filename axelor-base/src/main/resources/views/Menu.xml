@@ -185,6 +185,17 @@
         <view type="form" name="hobbies-form"/>
     </action-view>
     
+    <menuitem name="admin-root-general-hiringcomany"
+        parent="admin-root-general" title="Hiring Companies"
+        action="admin-root-general-hiringcomany"/>
+
+    <action-view name="admin-root-general-hiringcomany"
+        title="Hiring Company" model="com.axelor.apps.base.db.HiringCompany" >
+        <view type="grid" name="hiringcomapny-grid"/>
+        <view type="form" name="hiringcomapny-form"/>
+    </action-view>
+    
+    
     
 	
 	

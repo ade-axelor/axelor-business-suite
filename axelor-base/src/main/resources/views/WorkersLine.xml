@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+
+	<grid name="workersline-grid" title="Workers"
+		model="com.axelor.apps.base.db.WorkersLine">
+		<field name="workers" />
+		<field name="location" />
+		<field name="salary" />
+	</grid>
+
+	<form name="workersline-form" title="Workers"
+		model="com.axelor.apps.base.db.WorkersLine" onNew="action-record-workers-values">
+		<panel name="mainPanel">
+			<field name="workers" form-view="workers-form" grid-view="workers-grid"
+				onSelect="action-attr-filters-currency-select" />
+			<field name="location" />
+			<field name="salary" />
+		</panel>
+
+	</form>
+
+
+	<!-- expr="eval: &quot; ${__user__.id} MEMBER OF self.membersUserSet OR 
+		self.assignedTo.id = ${__user__.id} &quot;" -->
+		
+		<!--  3 and 1 is hobbies id  and 64 is currency id -->
+	<action-attrs name="action-attr-filters-currency-select">
+		<attribute name="domain"
+			expr="eval: &quot; ${3} 	MEMBER OF	self.hobbiesSet OR  ${1} 	MEMBER OF	self.hobbiesSet  OR self.currency.id = 64 &quot;"
+			for="workers" />
+	</action-attrs>
+
+
+
+
+</object-views>

@@ -24,8 +24,8 @@
 			<field name="city" />
 			<field name="age"/>
 			<field name="country" form-view="country-form" grid-view="country-grid" />
-			<field name="hobbiesSet" widget="TagSelect" canNew="false" />
-			<field name="currency" />
+			<field name="hobbiesSet" widget="TagSelect" canNew="false"  onSelect="action-attr-filters-hobbies"/> <!-- domain="self.id in (1,4)"  here self means it's self domain and then you have to access fiels using dot ( . ) -->
+			<field name="currency"  onSelect="action-attr-filters-currency" /> <!--  domain="self.id in (64,23,44,46 )" here self means it's self domain and then you have to access fiels using dot ( . ) -->
 			<field name="dataLoadDate" />
 			<field name="isGoogleUser" widget="boolean-select" x-true-text="Yes" x-false-text="No"/>
 			<field name="collegeStartDate" />
@@ -42,5 +42,14 @@
 		<field name="name" expr="abhinav" />
 		<field name="city" expr="surat" />
 	</action-record>
+	<!-- expr="eval: &quot; ${__user__.id} MEMBER OF self.membersUserSet OR self.assignedTo.id = ${__user__.id} &quot;" -->
+	<action-attrs name="action-attr-filters-currency">
+			<attribute name="domain" for="currency" expr="eval: &quot; self.id in (64,23,44,46 ) &quot;"/>
+	</action-attrs>
+	
+	<action-attrs name="action-attr-filters-hobbies">
+			<attribute name="domain" for="hobbiesSet" expr="eval: &quot; self.id in (1,4) &quot;"/>
+	</action-attrs>
+	
 
 </object-views>
