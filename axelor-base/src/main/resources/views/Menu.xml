@@ -161,6 +161,8 @@
         title="Workers" model="com.axelor.apps.base.db.Workers" >
         <view type="grid" name="workers-grid"/>
         <view type="form" name="workers-form"/>
+        <view type="cards" name="workers-cards"/>
+        <context name="json-enhance" expr="true"/>
     </action-view>
     
     

@@ -6,14 +6,15 @@
 	<grid name="workers-grid" title="Workers" model="com.axelor.apps.base.db.Workers">
 		<field name="name" />
 		<field name="city" />
-		<field name="age"/>
+		<field name="age" />
 		<field name="country" />
 		<field name="currency" />
 		<field name="dataLoadDate" />
-		<field name="isGoogleUser" widget="boolean-select" x-true-text="Yes" x-false-text="No"/>
+		<field name="isGoogleUser" widget="boolean-select" x-true-text="Yes"
+			x-false-text="No" />
 		<field name="collegeStartDate" />
 		<field name="collegeEndDate" />
-		
+
 
 	</grid>
 
@@ -22,12 +23,16 @@
 		<panel name="mainPanel">
 			<field name="name" />
 			<field name="city" />
-			<field name="age"/>
+			<field name="age" />
 			<field name="country" form-view="country-form" grid-view="country-grid" />
-			<field name="hobbiesSet" widget="TagSelect" canNew="false"  onSelect="action-attr-filters-hobbies"/> <!-- domain="self.id in (1,4)"  here self means it's self domain and then you have to access fiels using dot ( . ) -->
-			<field name="currency"  onSelect="action-attr-filters-currency" /> <!--  domain="self.id in (64,23,44,46 )" here self means it's self domain and then you have to access fiels using dot ( . ) -->
+			<field name="hobbiesSet" widget="TagSelect" canNew="false"
+				onSelect="action-attr-filters-hobbies" /> <!-- domain="self.id in (1,4)" here self means it's self domain and then 
+				you have to access fiels using dot ( . ) -->
+			<field name="currency" onSelect="action-attr-filters-currency" /> <!-- domain="self.id in (64,23,44,46 )" here self means it's self domain 
+				and then you have to access fiels using dot ( . ) -->
 			<field name="dataLoadDate" />
-			<field name="isGoogleUser" widget="boolean-select" x-true-text="Yes" x-false-text="No"/>
+			<field name="isGoogleUser" widget="boolean-select" x-true-text="Yes"
+				x-false-text="No" />
 			<field name="collegeStartDate" />
 			<field name="collegeEndDate" />
 		</panel>
@@ -37,19 +42,60 @@
 		</panel>
 	</form>
 
+
+	<cards name="workers-cards" title="Workers Cards"
+		model="com.axelor.apps.base.db.Workers">
+	
+		<field name="name" />
+		<field name="city" />
+		<field name="currency" /> <!--  many to one field can access using  -->
+		<field name="dataLoadDate" />
+		<field name="isGoogleUser" />
+		 <field name="hobbiesSet"/> <!--  many to many field can access using array number  -->
+		<field name="emailsSet"/>
+		<template><![CDATA[ 
+	<div class="span6">
+
+		<h4>{{name}}</h4>
+		<h4>{{city}}</h4>
+		<h4>{{currency.name}}</h4> <!-- Many to one field access with dotted field , same apply for One to One field also  -->  
+		<h4>{{dataLoadDate}}</h4>
+  		<h4>{{isGoogleUser}}</h4>
+		<h4>{{hobbiesSet[0].name}}</h4>  <!-- many to many field can access using array number ( first object ) -->
+		<h4>{{hobbiesSet[1].name}}</h4>  <!-- many to many field can access using array number ( second object ) -->
+	</div>
+
+	<div class="span6" > <!-- One to Many Only One Object Display Here !!! -->
+			 <h5>Email Address : </h5> <strong>{{emailKey.emailAddress}}</strong><br> 
+			 <h5>Email Company : </h5> <strong>{{emailKey.emailCompany}}</strong><br>	
+			 
+			 <!-- Below Code only work with namecolumn -->
+			 
+			 <h4>Email : {{emailsSet[0].emailAddress}}</h4>
+		     <h4>Email 2 : {{emailsSet[1].emailAddress}}</h4>
+	</div>
+
+	]]></template>
+	
+	</cards>
+
+
 	<action-record name="action-record-workers-values" model="com.axelor.apps.base.db.Workers"
 		search="self.name = 'abhinav'" copy="true">
 		<field name="name" expr="abhinav" />
 		<field name="city" expr="surat" />
 	</action-record>
-	<!-- expr="eval: &quot; ${__user__.id} MEMBER OF self.membersUserSet OR self.assignedTo.id = ${__user__.id} &quot;" -->
+	<!-- expr="eval: &quot; ${__user__.id} MEMBER OF self.membersUserSet OR 
+		self.assignedTo.id = ${__user__.id} &quot;" -->
 	<action-attrs name="action-attr-filters-currency">
-			<attribute name="domain" for="currency" expr="eval: &quot; self.id in (64,23,44,46 ) &quot;"/>
+		<attribute name="domain" for="currency"
+			expr="eval: &quot; self.id in (64,23,44,46 ) &quot;" />
 	</action-attrs>
-	
+
 	<action-attrs name="action-attr-filters-hobbies">
-			<attribute name="domain" for="hobbiesSet" expr="eval: &quot; self.id in (1,4) &quot;"/>
+		<attribute name="domain" for="hobbiesSet"
+			expr="eval: &quot; self.id in (1,4) &quot;" />
 	</action-attrs>
-	
+
 
 </object-views>

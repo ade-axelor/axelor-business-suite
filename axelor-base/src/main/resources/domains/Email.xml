@@ -7,7 +7,7 @@
 
   <entity name="Email" lang="java" cachable="true">
   
-    <string name="emailAddress" title="Email Address"  />
+    <string name="emailAddress" title="Email Address"  namecolumn="true"/>
     <string name="emailCompany" title="Email Company"/>
   	
   </entity>

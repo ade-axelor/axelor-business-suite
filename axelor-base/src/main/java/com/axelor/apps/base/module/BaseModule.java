@@ -50,6 +50,8 @@ import com.axelor.apps.base.db.repo.SequenceRepository;
 import com.axelor.apps.base.db.repo.TaxBaseRepository;
 import com.axelor.apps.base.db.repo.TeamTaskBaseRepository;
 import com.axelor.apps.base.db.repo.UserBaseRepository;
+import com.axelor.apps.base.db.repo.WorkersBasePopulateRepository;
+import com.axelor.apps.base.db.repo.WorkersRepository;
 import com.axelor.apps.base.db.repo.YearBaseRepository;
 import com.axelor.apps.base.db.repo.YearRepository;
 import com.axelor.apps.base.service.ABCAnalysisService;
@@ -121,6 +123,7 @@ public class BaseModule extends AxelorModule {
 
   @Override
   protected void configure() {
+    bind(WorkersRepository.class).to(WorkersBasePopulateRepository.class);
     bind(AddressService.class).to(AddressServiceImpl.class);
     bind(AdvancedExportService.class).to(AdvancedExportServiceImpl.class);
     bind(UserService.class).to(UserServiceImpl.class);
